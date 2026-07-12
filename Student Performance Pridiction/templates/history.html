@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Student History</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body{
+font-family:Arial;
+background:#f2f2f2;
+text-align:center;
+padding:40px;
+}
+
+table{
+width:70%;
+margin:auto;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ccc;
+padding:10px;
+}
+
+th{
+background:#007BFF;
+color:white;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Student History : {{student_id}}</h2>
+
+<table>
+
+<tr>
+<th>Attendance</th>
+<th>Internal</th>
+<th>Assignment</th>
+<th>Study Hours</th>
+<th>Participation</th>
+<th>Score</th>
+</tr>
+
+{% for row in records %}
+
+<tr>
+<td>{{row.attendance}}</td>
+<td>{{row.internal_marks}}</td>
+<td>{{row.assignment_score}}</td>
+<td>{{row.study_hours}}</td>
+<td>{{row.participation}}</td>
+<td>{{row.final_score}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<h3>Performance Trend</h3>
+
+<canvas id="trendChart"></canvas>
+
+<script>
+
+const scores=[
+{% for row in records %}
+{{row.final_score}},
+{% endfor %}
+];
+
+const labels=[
+{% for row in records %}
+"Attempt {{loop.index}}",
+{% endfor %}
+];
+
+new Chart(
+document.getElementById("trendChart"),
+{
+type:"line",
+data:{
+labels:labels,
+datasets:[{
+label:"Score Trend",
+data:scores,
+borderColor:"blue",
+fill:false
+}]
+}
+}
+);
+
+</script>
+
+</body>
+</html>
+

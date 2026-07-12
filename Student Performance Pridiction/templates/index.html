@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Student Performance Prediction</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(to right,#4facfe,#00f2fe);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.container{
+background:white;
+padding:40px;
+border-radius:15px;
+width:400px;
+text-align:center;
+}
+
+input{
+width:90%;
+padding:10px;
+margin:10px;
+}
+
+button{
+padding:10px 20px;
+background:#007BFF;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Student Performance Predictor</h2>
+
+<form action="/predict" method="POST">
+
+<input type="number" name="student_id" placeholder="Student ID" required>
+
+<input type="number" name="attendance" placeholder="Attendance %" required>
+
+<input type="number" name="internal" placeholder="Internal Marks" required>
+
+<input type="number" name="assignment" placeholder="Assignment Score" required>
+
+<input type="number" name="study" placeholder="Study Hours" required>
+
+<input type="number" name="participation" placeholder="Participation (1-5)" min="1" max="5" required>
+
+<button type="submit">Predict</button>
+
+</form>
+
+<br>
+
+<a href="/dashboard">View Dashboard</a>
+
+</div>
+
+</body>
+
+</html>
